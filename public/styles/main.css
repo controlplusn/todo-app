@@ -1,0 +1,16 @@
+body {
+    background-color: #212121;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    width: 450px;
+    height: 450px;
+    border-radius: 5px;
+}
