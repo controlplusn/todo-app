@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../styles/main.css">
     <title>Todo List App</title>
 </head>
@@ -10,18 +11,26 @@
     <div class="container">
         <div class="todo-app">
             <h2>To-Do App</h2>
-            <div class="input-task">
+            <div class="input-task" id="form">
                 <input type="text" id="input-box" placeholder="Add task">
-                <button>Add</button>
+                <button class="btn" id="button">Add</button>
             </div>
-            <ul id="list-container">
-                <li class="item">Task 1</li>
-                <li class="item">Task 2</li>
-                <li class="item">Task 3</li>
-            </ul>
+            <div class="item-list">
+                <ul id="list-container">
+                    <li><input type="checkbox" id="checkbox">
+                    <label class="item">Task 1</label>
+                    <i class='bx bx-dots-horizontal-rounded'></i></li>
+                    <li><input type="checkbox" id="checkbox">
+                    <label class="item">Task 2</label>
+                    <i class='bx bx-dots-horizontal-rounded'></i></li>
+                    <li><input type="checkbox" id="checkbox">
+                    <label class="item">Task 3</label>
+                    <i class='bx bx-dots-horizontal-rounded'></i></li>
+                </ul>
+            </div>
         </div>
     </div>
 
-    <script src="../scripts/main.js"></script>
+    <script src="../scripts/main.js" defer></script>
 </body>
 </html>

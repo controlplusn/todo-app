@@ -19,12 +19,14 @@ body {
     margin: 100px auto 20px;
     padding: 40px 30px 70px;
     border-radius: 10px;
+    overflow: auto;
 }
 
 .todo-app h2 {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    margin-left: 10px;
 }
 
 .input-task {
@@ -56,10 +58,23 @@ button {
     border-radius: 40px;
 }
 
-ul li {
+.item-list li{
     list-style: none;
+    margin-left: -35px;
     font-size: 17px;
-    padding: 12px 8px 12px 50px;
+    padding: 12px 8px 15px 0;
     user-select: none;
+    border: 0.5px solid #CCC;
+    position: relative;
+}
+
+input[type=checkbox] {
+    margin-left: 20px;
+}
+
+.item-list li i {
+    font-size: 20px;
+    position: absolute;
+    right: 10px;
     cursor: pointer;
 }
