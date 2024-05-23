@@ -68,8 +68,9 @@ button {
     position: relative;
 }
 
-input[type=checkbox] {
+.chbox {
     margin-left: 20px;
+    margin-right: 10px;
 }
 
 .item-list li i {
