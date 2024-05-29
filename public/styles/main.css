@@ -58,7 +58,7 @@ button {
     border-radius: 40px;
 }
 
-.item-list li{
+.list-container li{
     list-style: none;
     margin-left: -35px;
     font-size: 17px;
@@ -78,4 +78,12 @@ button {
     position: absolute;
     right: 10px;
     cursor: pointer;
+}
+
+.item-list .menu {
+    position: absolute;
+}
+
+.menu {
+    display: none;
 }
