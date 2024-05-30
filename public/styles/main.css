@@ -47,7 +47,7 @@ input {
     padding: 10px;
 }
 
-button {
+button.btn {
     border: none;
     outline: none;
     padding: 15px 40px;
@@ -62,10 +62,16 @@ button {
     list-style: none;
     margin-left: -35px;
     font-size: 17px;
-    padding: 12px 8px 15px 0;
-    user-select: none;
+    padding: 12px 8px 12px 0;
     border: 0.5px solid #CCC;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.left {
+    display: flex;
+    align-items: center;
 }
 
 .chbox {
@@ -73,17 +79,29 @@ button {
     margin-right: 10px;
 }
 
-.item-list li i {
-    font-size: 20px;
-    position: absolute;
-    right: 10px;
+li .options{
+    display: flex;
+    gap: 10px;
+}
+
+button.edit {
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    background-color: #4D869C;
+    color: #EEF7FF;
+    font-size: 15px;
     cursor: pointer;
+    border-radius: 3px;
 }
 
-.item-list .menu {
-    position: absolute;
-}
-
-.menu {
-    display: none;
+button.delete {
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    background-color: #BF3131;
+    color: #EEF7FF;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 3px;
 }
