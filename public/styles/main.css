@@ -65,7 +65,7 @@ button.btn {
     padding: 12px 8px 12px 0;
     border: 0.5px solid #CCC;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; 
     align-items: center;
 }
 
@@ -77,6 +77,13 @@ button.btn {
 .chbox {
     margin-left: 20px;
     margin-right: 10px;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+    accent-color: #212121;
 }
 
 li .options{

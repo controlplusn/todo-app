@@ -1,10 +1,10 @@
-const button = document.querySelector('#button');
+const addButton = document.querySelector('#button');
 const input = document.querySelector('#input-box');
 const form = document.querySelector('#form');
 const listContainer = document.querySelector('#list-container');
 
 // Add item
-button.addEventListener('click', addItem);
+addButton.addEventListener('click', addItem);
 
 function addItem(e) {
     e.preventDefault();
@@ -43,13 +43,13 @@ function addItem(e) {
     optionsDiv.className = 'options';
 
     // create new edit button element
-    editBtn = document.createElement('button');
+    const editBtn = document.createElement('button');
     editBtn.className = 'edit';
     editBtn.appendChild(document.createTextNode('Edit'));
     optionsDiv.appendChild(editBtn);
 
     // create new delete button element
-    deleteBtn = document.createElement('button');
+    const deleteBtn = document.createElement('button');
     deleteBtn.className = 'delete';
     deleteBtn.appendChild(document.createTextNode('Delete'));
     optionsDiv.appendChild(deleteBtn);
@@ -57,11 +57,20 @@ function addItem(e) {
     // Append leftDiv and optionsDiv to li
     li.appendChild(leftDiv);
     li.appendChild(optionsDiv);
-    console.log(li);
-
+        
     // Append new li to the listContainer
     listContainer.appendChild(li);
 
     // clear input
     input.value = '';
 }
+
+// events for edit and delete button
+listContainer.addEventListener('click', (e) => {
+    // delete
+    if (e.target.classList.contains('delete')) {
+        const deleteButton = e.target;
+        const li = deleteButton.closest('li'); // take the parent li
+        li.remove();
+    }
+});
