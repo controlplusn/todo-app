@@ -63,7 +63,7 @@ button.btn {
     margin-left: -35px;
     font-size: 17px;
     padding: 12px 8px 12px 0;
-    border: 0.5px solid #CCC;
+    border-bottom: 0.5px solid #CCC;
     display: flex;
     justify-content: space-between; 
     align-items: center;
@@ -72,6 +72,10 @@ button.btn {
 .left {
     display: flex;
     align-items: center;
+}
+
+.newItem {
+    font-size: 16px;    
 }
 
 .chbox {
@@ -107,6 +111,17 @@ button.delete {
     outline: none;
     padding: 10px 15px;
     background-color: #BF3131;
+    color: #EEF7FF;
+    font-size: 15px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button.save {
+    border: none;
+    outline: none;
+    padding: 10px 15px; 
+    background-color: #0A6847;
     color: #EEF7FF;
     font-size: 15px;
     cursor: pointer;

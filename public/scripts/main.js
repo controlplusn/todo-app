@@ -67,6 +67,56 @@ function addItem(e) {
 
 // events for edit and delete button
 listContainer.addEventListener('click', (e) => {
+    // edit
+    if(e.target.classList.contains('edit')) {
+        // edit
+        const editButton = e.target;
+        const li = editButton.closest('li');
+
+        // remove edit button
+        editButton.remove();
+
+        // create new save button
+        const saveButton = document.createElement('button');
+        saveButton.className = 'save';
+        saveButton.appendChild(document.createTextNode('Save'));
+
+        // create an input element
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.className = 'newItem';
+
+        // get the label
+        const label = li.querySelector('.item');
+        input.value = label.textContent.trim();
+
+        // clear content of the li and append the input
+        const left = li.querySelector('.left');
+        left.textContent = '';
+        left.append(input);
+
+        // prepend save button
+        const options = li.querySelector('.options');
+        options.prepend(saveButton);
+
+        // save the edited text
+        saveButton.addEventListener('click', () => {
+            // update the text input
+            label.textContent = input.value;
+
+            // restore
+            left.innerHTML = `
+                <input type="checkbox" id="checkbox" class="chbox">
+                <label class="item">${input.value}</label>
+            `;
+
+            // re-add the edit button
+            saveButton.remove();
+            
+            options.prepend(editButton);
+        });
+    }
+
     // delete
     if (e.target.classList.contains('delete')) {
         const deleteButton = e.target;
