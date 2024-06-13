@@ -3,6 +3,9 @@ const input = document.querySelector('#input-box');
 const form = document.querySelector('#form');
 const listContainer = document.querySelector('#list-container');
 
+// load tasks from local storage 
+document.addEventListener('DOMContentLoaded', loadTasks);
+
 // Add item
 addButton.addEventListener('click', addItem);
 
@@ -28,7 +31,6 @@ function addItem(e) {
     // create new checkbox element
     var checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
-    checkbox.id = 'checkbox';
     checkbox.className = 'chbox';
     leftDiv.appendChild(checkbox);
      
@@ -61,8 +63,75 @@ function addItem(e) {
     // Append new li to the listContainer
     listContainer.appendChild(li);
 
+    saveTasks(newItem);
+
     // clear input
     input.value = '';
+}
+
+function saveTasks(task) {
+    let tasks;
+    if (localStorage.getItem('tasks') === null) {
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+
+    tasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function loadTasks() {
+    let tasks;
+    if (localStorage.getItem('tasks') === null) {
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+
+    tasks.forEach(task => {
+        // create new li element
+        var li = document.createElement('li');
+
+        // create the left div
+        var leftDiv = document.createElement('div');
+        leftDiv.className = 'left'
+
+        // create new checkbox element
+        var checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'chbox';
+        leftDiv.appendChild(checkbox);
+        
+        // create new label element
+        var label = document.createElement('label');
+        label.className = 'item';
+        label.appendChild(document.createTextNode(task));
+        leftDiv.appendChild(label);
+
+        // create div for options
+        var optionsDiv = document.createElement('div');
+        optionsDiv.className = 'options';
+
+        // create new edit button element
+        const editBtn = document.createElement('button');
+        editBtn.className = 'edit';
+        editBtn.appendChild(document.createTextNode('Edit'));
+        optionsDiv.appendChild(editBtn);
+
+        // create new delete button element
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'delete';
+        deleteBtn.appendChild(document.createTextNode('Delete'));
+        optionsDiv.appendChild(deleteBtn);
+
+        // Append leftDiv and optionsDiv to li
+        li.appendChild(leftDiv);
+        li.appendChild(optionsDiv);
+
+        // Append new li to the listContainer
+        listContainer.appendChild(li);
+    });
 }
 
 // events for edit and delete button
@@ -121,6 +190,26 @@ listContainer.addEventListener('click', (e) => {
     if (e.target.classList.contains('delete')) {
         const deleteButton = e.target;
         const li = deleteButton.closest('li'); // take the parent li
+        const task = li.querySelector('.item').textContent.trim();
         li.remove();
+
+        removeTasks(task);
     }
 });
+
+
+function removeTasks(task) {
+    let tasks;
+    if (localStorage.getItem('tasks') === null) {
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+    tasks.forEach((storedTask, index) => {
+        if(storedTask === task) {
+            tasks.splice(index, 1);
+            console.log(storedTask);
+        }
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
