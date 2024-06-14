@@ -157,7 +157,8 @@ listContainer.addEventListener('click', (e) => {
 
         // get the label
         const label = li.querySelector('.item');
-        input.value = label.textContent.trim();
+        const oldText = label.textContent.trim()
+        input.value = oldText;
 
         // clear content of the li and append the input
         const left = li.querySelector('.left');
@@ -170,19 +171,23 @@ listContainer.addEventListener('click', (e) => {
 
         // save the edited text
         saveButton.addEventListener('click', () => {
+            const newText = input.value.trim();
+            if (newText === "") return;
+
             // update the text input
-            label.textContent = input.value;
+            label.textContent = newText;
 
             // restore
             left.innerHTML = `
                 <input type="checkbox" id="checkbox" class="chbox">
-                <label class="item">${input.value}</label>
+                <label class="item">${newText}</label>
             `;
 
             // re-add the edit button
             saveButton.remove();
-            
             options.prepend(editButton);
+
+            updateTask(oldText, newText);
         });
     }
 
@@ -205,11 +210,29 @@ function removeTasks(task) {
     } else {
         tasks = JSON.parse(localStorage.getItem('tasks'));
     }
+
     tasks.forEach((storedTask, index) => {
         if(storedTask === task) {
             tasks.splice(index, 1);
             console.log(storedTask);
         }
     });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function updateTask(oldTask, newTask) {
+    let tasks;
+    if (localStorage.getItem('tasks') === null) {
+        tasks = [];
+    } else {
+        tasks = JSON.parse(localStorage.getItem('tasks'));
+    }
+
+    tasks.forEach((task, index) => {
+        if (task === oldTask) {
+            tasks[index] = newTask;
+        }
+    });
+
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
