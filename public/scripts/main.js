@@ -214,7 +214,6 @@ function removeTasks(task) {
     tasks.forEach((storedTask, index) => {
         if(storedTask === task) {
             tasks.splice(index, 1);
-            console.log(storedTask);
         }
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
